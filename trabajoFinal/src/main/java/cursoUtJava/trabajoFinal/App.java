@@ -1,4 +1,4 @@
-package cursoUtJava.TrabajoFinal;
+package cursoUtJava.trabajoFinal;
 
 /**
  * Hello world!

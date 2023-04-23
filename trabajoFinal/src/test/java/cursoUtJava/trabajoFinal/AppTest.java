@@ -1,4 +1,4 @@
-package cursoUtJava.TrabajoFinal;
+package cursoUtJava.trabajoFinal;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
