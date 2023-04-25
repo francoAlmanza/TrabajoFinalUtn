@@ -1,25 +1,66 @@
 package conexion;
 import java.sql.*;
-public class Conexion {
-	
-	class MysqlCon{ 
-	public void main(String args[]){ 
-	try{ 
-	   Class.forName("com.mysql.jdbc.Driver"); 
-	
-	   String url     ="jdbc:mysql://localhost:3306/qtar";
-	   String user    ="root";
-	   String password= " "; 
-	   //crear objeto de conexion
-	Connection con=DriverManager.getConnection(url,user,password); 
-	
-	Statement stmt=con.createStatement();// crea sentencia
-	ResultSet rs= stmt.executeQuery("seltec * from equipo"); // ejecuta consulta
-	while(rs.next())
-	System.out.println(rs.getInt(1)+" "+rs.getInt(2));
-	con.close(); //cerrar conexion
-	} catch(Exception e){ System.out.println(e);} 
-	} 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Conexion extends Config {
+
+	private String url;
+	private String usuario;
+	private String password;
+	protected Connection conec = null;
+
+public Conexion() {
+
+	this.url = this.getDriver();
+	this.usuario = this.getUser();
+	this.password = this.getPass();
+
+	try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+  } catch (ClassNotFoundException e) {
+
+		}
+	try {
+
+		this.conec = DriverManager.getConnection(url, usuario, password);
+
+   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
+
+	public int guardarDb(String sqlStr) throws SQLException {
+
+		Statement consulta = this.conec.createStatement();
+		int cant;
+		cant = consulta.executeUpdate(sqlStr);
+		return cant;
+
+	}
+
+	public ResultSet consultarDb(String sqlStr) throws SQLException {
+
+		Statement consulta = this.conec.createStatement();
+		ResultSet rs = consulta.executeQuery(sqlStr);
+		// this.conec.close();
+		return rs;
+
+	}
+
+	public void cerrarConexion() {
+
+		try {
+			this.conec.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
-	
