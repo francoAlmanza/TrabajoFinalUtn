@@ -1,5 +1,8 @@
 package resultado;
 
-public class Resultado {
 
-}
+	public enum Resultado {
+		GANO,EMPATO,PERDIO;
+		}
+
+

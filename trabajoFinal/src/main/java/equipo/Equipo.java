@@ -44,4 +44,4 @@ public void guardarEquipo(String sqlStr) throws SQLException {
 		
 	}
 	
-}
+
