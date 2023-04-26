@@ -84,4 +84,4 @@ public class Pronostico extends Datos {
 		}
 
 	}
-}
+

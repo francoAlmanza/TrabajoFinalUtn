@@ -1,16 +1,17 @@
 package partido;
+import equipo.Equipo;
+import resultado.Resultado;
 
-
-	public class Partido {
-		int numeroFase;
-		int numeroRonda;
+public class Partido {
+		 private int numeroFase;
+		 int numeroRonda;
 		private Equipo equipo1;
 		private Equipo equipo2;
 		private int golesEquipo1;
 		private int golesEquipo2;
 		
 		 public Partido(int numeroFase , int numeroRonda ,Equipo equipo1,Equipo equipo2){
-			 this.numeroFase = numeroFase;
+			 this.setNumeroFase(numeroFase);
 			 this.numeroRonda = numeroRonda;
 			 this.equipo1 = equipo1;
 			 this.equipo2 = equipo2;
@@ -18,7 +19,7 @@ package partido;
 			 
 		 }
 		 public Partido(int numeroFase , int numeroRonda ,Equipo equipo1,Equipo equipo2, int golesEquipo1 , int golesEquipo2 ){
-			 this.numeroFase = numeroFase;
+			 this.setNumeroFase(numeroFase);
 			 this.numeroRonda = numeroRonda;
 			 this.equipo1 = equipo1;
 			 this.equipo2 = equipo2;
@@ -53,21 +54,21 @@ package partido;
 		 }
 		 
 
-	     public ResultadoEnum resultado(Equipo a) {
+	     public Resultado resultado(Equipo a) {
 	    	 
-	    	 if(this.golesEquipo1 == this.golesEquipo2) { return ResultadoEnum.EMPATO;}
+	    	 if(this.golesEquipo1 == this.golesEquipo2) { return Resultado.EMPATO;}
 	    	 
 	    	 if((this.golesEquipo1 >= this.golesEquipo2) && this.equipo1 == a){
-	    		 return ResultadoEnum.GANO;
+	    		 return Resultado.GANO;
 	    	 }
 	    	 else {
 	    		   
 	    		 if((this.golesEquipo2 >= this.golesEquipo1) && this.equipo2 == a){
-	        		 return ResultadoEnum.GANO;
+	        		 return Resultado.GANO;
 	        	 }
 	    		 
 	    		 else {
-	    			 return ResultadoEnum.PERDIO;
+	    			 return Resultado.PERDIO;
 	    		 
 	    		 }
 	    		 
@@ -80,7 +81,13 @@ package partido;
 	    	 
 	    	
 	     }
+		public int getNumeroFase() {
+			return numeroFase;
+		}
+		public void setNumeroFase(int numeroFase) {
+			this.numeroFase = numeroFase;
+		}
 
 	}
 
-}
+

@@ -1,86 +1,105 @@
 package apostador;
 
-import datos.Datos;
-import equipo.Equipo;
-import partido.Partido;
-import resultado.Resultado;
+import java.util.ArrayList;
 
-public class Apostador extends Datos {
-	private int faseNro;
-	private int rondaNro;
-	private Partido partido;
-	private Equipo equipo;
-	private Resultado resultado;
-    
+import pronostico.Pronostico;
+
+public class Apostador {
 	
-	public Pronostico() {}
-
-	public Pronostico(int fase,int rondaNro,Partido partido, Equipo equipo, ResultadoEnum resultado) {
-		
-		this.partido = partido;
-		this.equipo = equipo;
-		this.resultado = resultado;
-        this.rondaNro = rondaNro;
-	    this.faseNro = fase;
-	}
-
-    public String verEquipPron() {
-    	    	
-    	return "PARTIDO PRONOSTICO " +partido.verequipos()+ " " + this.equipo.getid() + " "+resultado +" PARTIDO RESULTADO " +  partido.verPartido();
-   
-    }
-
-        
-    public int getRondaNro() {
-		
-    	return rondaNro;
+	private int id;
+	private String nombre;
+	private ArrayList<Pronostico> pronostico;
+	private int puntosTotal;
 	
-    }
-
-    
-    
-	public int getFaseNro() {
-		return faseNro;
+	public Apostador(int id,String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+		this.pronostico = new ArrayList<Pronostico>();	
+	    this.puntosTotal = 0;
 	}
 
-	public void setFaseNro(int faseNro) {
-		this.faseNro = faseNro;
+
+	public int getId() {
+		return this.id;
 	}
 
-	public int acertado() {
-		
-		 
-		
-		if(	this.partido.resultado(this.equipo)  == this.resultado) {
-			
-			return 1;
-			
-		}
-		else { 
-			return 0;
-			
-		}
-		
+
+	public String getNombre() {
+		return this.nombre;
 	}
-   
-    
-    public int puntos() {
-    
-		int puntos = 0;
+	
 		
-		if(	this.partido.resultado(this.equipo)  == this.resultado) {
-    	
-			return  Integer.parseInt(this.getPuntosacertado());
-       
-		}
-		
-		else {
-    	
-			puntos = 0;
-		}		
-    		
-		return puntos;	
-   
+	public ArrayList<Pronostico> getPronostico() {
+		return pronostico;
 	}
 
-}
+
+	public void agregarprono(Pronostico a) {
+		
+		pronostico.add(a);
+		
+	}
+	
+
+	
+	public int getPuntosTotal() {
+		return puntosTotal;
+	}
+
+
+	public void guardarPuntosTotal(int puntosTotal) {
+		this.puntosTotal += puntosTotal;
+	}
+
+
+	public int puntos() {
+		
+		 int puntaje = 0;
+	    
+		 for (Pronostico ju : this.pronostico) {
+	        
+						 
+			 puntaje += ju.puntos();
+			     	
+	      }
+	     
+	     return  puntaje;
+	  	    
+	    }
+	
+	public void todosPartidos() {
+		
+		
+		    
+			 for (Pronostico ju : this.pronostico) {
+		        
+				
+				 System.out.println(ju.verEquipPron());
+		     	
+		      }
+		     
+		   
+		     
+		    
+		    }
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public void setPronostico(ArrayList<Pronostico> pronostico) {
+		this.pronostico = pronostico;
+	}
+
+
+	public void setPuntosTotal(int puntosTotal) {
+		this.puntosTotal = puntosTotal;
+	}
+	}

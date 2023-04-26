@@ -1,5 +1,9 @@
 package clasesAux;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,7 +13,9 @@ import conexion.Conexion;
 import equipo.Equipo;
 import fase.Fase;
 import partido.Partido;
-
+import pronostico.Pronostico;
+import ronda.Ronda;
+import resultado.Resultado;
 public class ClasesAux {
 	public static Equipo buscarEquipo(ArrayList<Equipo> aux, String auxStr) {
 
@@ -186,7 +192,8 @@ public class ClasesAux {
 
 	}
 	
-	public static void actResultadosArch(ArrayList<Fase> fases, String ubicacion){
+	public static void actResultadosArch(ArrayList<Fase> fases, String ubicacion)
+	{
 
 		Path resultadosDef = Paths.get("resultado.txt");
 		Path resultadoUsuario = Paths.get(ubicacion);
@@ -229,7 +236,7 @@ public class ClasesAux {
         
 	}
 	
-	public static void cargaPronoPart(ArrayList<Fase> fases,ArrayList<Equipo> equipos,ArrayList<Participante> participantes) {
+	public static void cargaPronoPart(ArrayList<Fase> fases,ArrayList<Equipo> equipos,ArrayList< Apostador> participantes) {
 		
 		Conexion con = new Conexion();
 		ResultSet cargaParticipante;
@@ -241,7 +248,7 @@ public class ClasesAux {
 	    
         	while (cargaParticipante.next()) {
 	    	
-	     	participantes.get(cargaParticipante.getInt(4)).agregarprono(new Pronostico(cargaParticipante.getInt(2),cargaParticipante.getInt(3) ,buscarPartido(fases.get(cargaParticipante.getInt(2)).getRondas().get(cargaParticipante.getInt(3)).getPartidos(),cargaParticipante.getString(5)),buscarEquipo(equipos,cargaParticipante.getString(6)),ResultadoEnum.valueOf(cargaParticipante.getString(7))));	
+	     	participantes.get(cargaParticipante.getInt(4)).agregarprono(new Pronostico(cargaParticipante.getInt(2),cargaParticipante.getInt(3) ,buscarPartido(fases.get(cargaParticipante.getInt(2)).getRondas().get(cargaParticipante.getInt(3)).getPartidos(),cargaParticipante.getString(5)),buscarEquipo(equipos,cargaParticipante.getString(6)),Resultado.valueOf(cargaParticipante.getString(7))));	
 	    	          	
 	   
         	} 

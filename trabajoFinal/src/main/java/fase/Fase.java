@@ -1,6 +1,11 @@
 package fase;
 import java.util.ArrayList;
 
+import apostador.Apostador;
+import datos.Datos;
+import pronostico.Pronostico;
+import ronda.Ronda;
+
 
 
 	public class Fase extends Datos{
@@ -33,7 +38,7 @@ import java.util.ArrayList;
 	}
 
 
-	public void puntosFase(ArrayList<Participante> part) {
+	public void puntosFase(ArrayList<Apostador> part) {
 		
 		int totalPartidosFase = 0;
 		System.out.println("");
@@ -58,7 +63,7 @@ import java.util.ArrayList;
 		System.out.println("TOTAL PARTIDOS DE LA FASE: " + totalPartidosFase);
 		System.out.println("");
 		
-		for (Participante p : part) {
+		for (Apostador p : part) {
 			
 				int acertados = 0;
 			   	
@@ -95,4 +100,4 @@ import java.util.ArrayList;
 
 		
 	}
-}
+

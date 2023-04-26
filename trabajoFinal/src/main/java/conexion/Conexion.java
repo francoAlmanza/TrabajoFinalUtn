@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Conexion extends Config {
+import clasesAux.ClasesAux;
+
+public class Conexion extends ClasesAux {
 
 	private String url;
 	private String usuario;
@@ -34,6 +36,21 @@ public Conexion() {
 		}
 
 	}
+
+	private String getPass() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+	private String getUser() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+	private String getDriver() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 	public int guardarDb(String sqlStr) throws SQLException {
 
