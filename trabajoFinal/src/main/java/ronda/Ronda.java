@@ -61,7 +61,7 @@ public class Ronda extends Datos{
 		int cont=0;
 		
 		for (Partido par : partidos) {
-		    if (par.numeroFase == this.numeroFase) {
+		    if (par.getNumeroFase() == this.numeroFase) {
 		
 			cont++;
 		}
